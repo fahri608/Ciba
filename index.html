@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesan untuk Farhah</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffe6eb;
+      text-align: center;
+      padding-top: 50px;
+      color: #333;
+      overflow: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      background-color: #ff4d6d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 18px;
+      transition: 0.3s;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+    }
+    a:hover {
+      background-color: #e63950;
+    }
+
+    h1 {
+      margin-top: 30px;
+      color: #ff1e56;
+      font-size: 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .typing {
+      border-right: 2px solid #ff1e56;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: caret 0.8s infinite;
+    }
+
+    @keyframes caret {
+      50% { border-color: transparent; }
+    }
+
+    /* Animasi Hati */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      color: #ff1e56;
+      font-size: 24px;
+      animation: rise 5s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Audio Player (disembunyikan) */
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="position: relative; z-index: 2;">Halo Farhah!</h2>
+  <a onclick="mulaiPesan()">Klik untuk lihat pesan</a>
+
+  <h1 id="pesan" class="typing"></h1>
+
+  <!-- Musik romantis -->
+  <audio id="musik" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function mulaiPesan() {
+      // Putar musik
+      const musik = document.getElementById('musik');
+      musik.play();
+
+      // Tampilkan pesan dengan efek mengetik
+      const text = "iloveyou farhah, selamat istirahat";
+      const pesanElement = document.getElementById('pesan');
+      pesanElement.innerHTML = ""; // Reset teks
+      let i = 0;
+      function typeEffect() {
+        if (i < text.length) {
+          pesanElement.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeEffect, 100); // kecepatan mengetik
+        }
+      }
+      typeEffect();
+    }
+
+    // Animasi hati
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.innerHTML = "❤️";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
